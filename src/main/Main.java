@@ -1,5 +1,6 @@
 package main;
 
+import dao.CreateDAO;
 import database.Conexao;
 //import database.Conexao2;
 import database.DadosConexao;
@@ -24,8 +25,12 @@ public class Main {
 		dadosCon.setPorta(PORTA);
 		dadosCon.setBd(BD);
 
-		con = new Conexao(dadosCon);
-		con.conect();
+		if (CreateDAO.createBD(BANCO, SCHEMA, dadosCon)) {
+			con = new Conexao(dadosCon);
+			con.conect();
+		} else {
+			System.out.println("Ocorreu um problema na criacao do banco de dados");
+		}
 	}
 
 }

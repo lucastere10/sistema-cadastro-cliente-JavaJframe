@@ -3,23 +3,26 @@ package models;
 import java.util.ArrayList;
 
 public class Pedido {
-	private String id_pedido;
+	private String idPedido;
 	private Cliente comprador;
 	private ArrayList<Produto> listaProduto;
 	
-	public Pedido(String id_pedido, Cliente comprador, ArrayList<Produto> listaProduto) {
+	public Pedido(String idPedido) {
+		this.idPedido = idPedido;
+	}
+	
+	public Pedido(String id_pedido, Cliente comprador) {
 		super();
-		this.id_pedido = id_pedido;
+		this.idPedido = idPedido;
 		this.comprador = comprador;
-		this.listaProduto = listaProduto;
 	}
 
 	public String getId_pedido() {
-		return id_pedido;
+		return idPedido;
 	}
 
-	public void setId_pedido(String id_pedido) {
-		this.id_pedido = id_pedido;
+	public void setId_pedido(String idPedido) {
+		this.idPedido = idPedido;
 	}
 
 	public Cliente getComprador() {

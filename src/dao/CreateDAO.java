@@ -19,11 +19,11 @@ public class CreateDAO {
 			
 			if (criarSchema(conexao, schema)) {
 				criarEntidadeCliente(conexao, schema);
+				criarEntidadeFuncionario(conexao, schema);
+				criarEntidadeCategoria(conexao, schema);
 				criarEntidadeProduto(conexao, schema);
-				//criarEntidadeFuncionario(conexao, schema);
-				//criarEntidadeLivro(conexao, schema);
-				//criarEntidadeLivrosCliente(conexao, schema);
-				
+				criarEntidadePedido(conexao, schema);
+				criarEntidadePedidoItem(conexao, schema);
 				bdCriado = true;
 			}
 		}
@@ -128,10 +128,10 @@ public class CreateDAO {
 			}
 
 			if (estrangeiro) {
-				sql += "references " + entidadeEstrangeira + "(" + atributoEstrangeiro + ")";
+				sql += "references " + schema + "." + entidadeEstrangeira + "(" + atributoEstrangeiro + ")";
 			}
 
-			
+			System.out.println(sql);
 			con.query(sql);
 		}
 	}
@@ -204,6 +204,19 @@ public class CreateDAO {
 		}		
 	}
 	
+	private static void criarEntidadeCategoria(Conexao con, String schema) {
+		String entidade = "categoria";
+		
+		if (!entidadeExists(con, schema, entidade))		
+			criarTabela(con, entidade, schema);
+		
+		if (entidadeExists(con, schema, entidade)) {
+			criarCampo(con, schema, entidade, "idcategoria"	 , "serial"	 	 , true,  false, null, null);
+			criarCampo(con, schema, entidade, "nome"	 , "varchar(100)"	 , false, false, null, null);
+			criarCampo(con, schema, entidade, "descricao", "varchar(255)" 	 , false, false, null, null);
+		}		
+	}
+	
 	private static void criarEntidadeProduto(Conexao con, String schema) {
 		String entidade = "produto";
 		
@@ -220,22 +233,10 @@ public class CreateDAO {
 			criarCampo(con, schema, entidade, "data_fabricacao"		, "date"		, false, false, null, null);
 			criarCampo(con, schema, entidade, "valor_unitario"		, "numeric"		, false, false, null, null);
 			criarCampo(con, schema, entidade, "quantidade_estoque"	, "int"			, false, false, null, null);
-			//criarCampo(con, schema, entidade, "idcategoria"  		, "int"	 		, false, true, null, null);
+			criarCampo(con, schema, entidade, "idcategoria"  		, "int"
+					, false, true, "categoria", "idcategoria");
 		}
 		
-	}
-	
-	private static void criarEntidadeCategoria(Conexao con, String schema) {
-		String entidade = "categoria";
-		
-		if (!entidadeExists(con, schema, entidade))		
-			criarTabela(con, entidade, schema);
-		
-		if (entidadeExists(con, schema, entidade)) {
-			criarCampo(con, schema, entidade, "idcategoria"	 , "serial"	 	 , true,  false, null, null);
-			criarCampo(con, schema, entidade, "nome"	 , "varchar(100)"	 , false, false, null, null);
-			criarCampo(con, schema, entidade, "descricao", "varchar(255)" 	 , false, false, null, null);
-		}		
 	}
 	
 	private static void criarEntidadePedido(Conexao con, String schema) {
@@ -250,8 +251,11 @@ public class CreateDAO {
 					"TEXT GENERATED ALWAYS AS ( 'ORDER' || LPAD(idpedido::TEXT, 3, '0') ) STORED", 
 					false,  false, null, null);
 			criarCampo(con, schema, entidade, "data_emissao"		, "date"		, false, false, null, null);
-			//criarCampo(con, schema, entidade, "idfuncionario"  		, "int"	 		, false, true, null, null);
-			//criarCampo(con, schema, entidade, "idcliente"  			, "int"	 		, false, true, null, null);
+			//fks
+			criarCampo(con, schema, entidade, "idfuncionario", "int"	 		
+					, false, true, "funcionario", "idfuncionario");
+			criarCampo(con, schema, entidade, "idcliente", "int"
+					, false, true, "cliente", "idcliente");
 		}
 		
 	}
@@ -263,14 +267,18 @@ public class CreateDAO {
 			criarTabela(con, entidade, schema);
 		
 		if (entidadeExists(con, schema, entidade)) {
-			//criarCampo(con, schema, entidade, "idproduto"		, "int"				, false,  true, null, null);
-			//criarCampo(con, schema, entidade, "idpedido"		, "int"				, false,  true, null, null);
+			//fks
+			criarCampo(con, schema, entidade, "idproduto"		
+					,"int" , false,  true, "produto", "idproduto");
+			criarCampo(con, schema, entidade, "idpedido"		
+					,"int" , false,  true, "pedido", "idpedido");
+			//atributos
 			criarCampo(con, schema, entidade, "quantidade"	 	, "int"				, false, false, null, null);
 			criarCampo(con, schema, entidade, "valor_unitario"	, "Double Precision", false, false, null, null);
 			criarCampo(con, schema, entidade, "valor_desconto"	, "date"			, false, false, null, null);
 			criarCampo(con, schema, entidade, "frete"			, "numeric"			, false, false, null, null);
 			criarCampo(con, schema, entidade, "valor_bruto"		, "int"				, false, false, null, null);
-			criarCampo(con, schema, entidade, "valor_liquido"  	, "int"	 			, false, true, null, null);
+			criarCampo(con, schema, entidade, "valor_liquido"  	, "int"	 			, false, false, null, null);
 		}
 		
 	}
