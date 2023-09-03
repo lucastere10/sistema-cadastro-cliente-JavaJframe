@@ -17,12 +17,10 @@ public class TesteDeCriacaoDeEntidade {
 		Cliente novoCliente = new Cliente(
 				"Cliente Teste",
 				"123456789-10",
-				"teste123",
 				"Rua das Flores, 123"
 				);
 		System.out.println(novoCliente.getNome());
 		System.out.println(novoCliente.getCpf());
-		System.out.println(novoCliente.getSenha());
 		System.out.println(novoCliente.getEndereco());
 
 	}

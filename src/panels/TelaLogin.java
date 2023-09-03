@@ -55,18 +55,18 @@ public class TelaLogin extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("SISTEMA DE CADASTRO");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(63, 40, 240, 33);
+		lblNewLabel_2.setBounds(63, 38, 240, 33);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_4 = new JLabel("DEPOSITO SERRANO");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_4.setBounds(67, 11, 240, 33);
+		lblNewLabel_4.setBounds(63, 11, 240, 33);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel = new JLabel("Login");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(97, 90, 46, 14);
+		lblNewLabel.setBounds(97, 97, 46, 14);
 		contentPane.add(lblNewLabel);
 		
 		JFormattedTextField frmtdtxtfldLogin = new JFormattedTextField();
@@ -77,21 +77,13 @@ public class TelaLogin extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Senha");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(97, 169, 46, 14);
+		lblNewLabel_1.setBounds(97, 174, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		passwordField = new JPasswordField();
 		passwordField.setToolTipText("Senha do Usuário");
-		passwordField.setBounds(97, 194, 156, 33);
+		passwordField.setBounds(97, 191, 156, 33);
 		contentPane.add(passwordField);
-		
-		JRadioButton rdbtnDocente = new JRadioButton("Docente");
-		rdbtnDocente.setBounds(97, 234, 77, 23);
-		contentPane.add(rdbtnDocente);
-		
-		JRadioButton rdbtnEstudante = new JRadioButton("Estudante");
-		rdbtnEstudante.setBounds(176, 234, 77, 23);
-		contentPane.add(rdbtnEstudante);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
@@ -100,12 +92,12 @@ public class TelaLogin extends JFrame {
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnLogin.setBounds(131, 276, 89, 23);
+		btnLogin.setBounds(131, 249, 89, 23);
 		contentPane.add(btnLogin);
 		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistrar.setBounds(131, 310, 89, 23);
+		btnRegistrar.setBounds(131, 283, 89, 23);
 		contentPane.add(btnRegistrar);
 		
 		JLabel lblNewLabel_3 = new JLabel("By: Lucas Caldas");

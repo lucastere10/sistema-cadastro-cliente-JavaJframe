@@ -201,6 +201,7 @@ public class CreateDAO {
 			criarCampo(con, schema, entidade, "username" , "varchar(14)" 	 , false, false, null, null);
 			criarCampo(con, schema, entidade, "senha"	 , "varchar(60)" 	 , false, false, null, null);
 			criarCampo(con, schema, entidade, "email"	 , "varchar(150)"	 , false, false, null, null);
+			criarCampo(con, schema, entidade, "endereco" , "varchar(150)"	 , false, false, null, null);
 		}		
 	}
 	
