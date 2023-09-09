@@ -38,7 +38,7 @@ public class ClienteDAO {
 	
 	private void prepararSqlInclusao() {
 		String sql = "insert into "+ this.schema + ".cliente";	
-		sql += " (nome, cpf, email, telefone, endereco, dtnasc)";
+		sql += " (nome, cpf, email, telefone, dt_nascimento)";
 		sql += " values ";
 		sql += " (?, ?, ?, ?, ?, ?)";
 		
@@ -56,8 +56,7 @@ public class ClienteDAO {
 		sql += " cpf = ?,";
 		sql += " email = ?,";
 		sql += " telefone = ?,";
-		sql += " endereco = ?,";
-		sql += " dtnasc = ?";
+		sql += " dt_nascimento = ?";
 		sql += " where idcliente = ?";
 		
 		try {
@@ -74,7 +73,6 @@ public class ClienteDAO {
 			pAlteracao.setString(2, cliente.getCpf());
 			pAlteracao.setString(3, cliente.getEmail());
 			pAlteracao.setString(4, cliente.getTelefone());
-			pAlteracao.setString(5, cliente.getEndereco());
 			pAlteracao.setDate  (6, Date.valueOf(cliente.getDtnasc()));
 			pAlteracao.setInt   (7, cliente.getIdcliente());
 			
@@ -97,7 +95,6 @@ public class ClienteDAO {
 			pInclusao.setString(2, cliente.getCpf());
 			pInclusao.setString(3, cliente.getEmail());
 			pInclusao.setString(4, cliente.getTelefone());
-			pInclusao.setString(5, cliente.getEndereco());
 			pInclusao.setDate(6, Date.valueOf(cliente.getDtnasc()));
 			pInclusao.setInt(7, cliente.getIdcliente());			
 			return pInclusao.executeUpdate();

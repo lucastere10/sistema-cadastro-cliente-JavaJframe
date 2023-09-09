@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
 import javax.swing.JTextField;
@@ -149,10 +150,10 @@ public class TelaRegistro extends JFrame {
 		panel.add(lblCpf);
 		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JLabel lblEndereo = new JLabel("Endereço");
-		lblEndereo.setBounds(12, 141, 100, 21);
-		panel.add(lblEndereo);
-		lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setBounds(12, 141, 100, 21);
+		panel.add(lblEmail);
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JFormattedTextField formattedTextEmail = new JFormattedTextField();
 		formattedTextEmail.setBounds(12, 161, 233, 26);
@@ -284,7 +285,7 @@ public class TelaRegistro extends JFrame {
             bairro = array[15];
             cidade = array[19]; 
             uf = array[23];
-            
+            System.out.println(Arrays.toString(array));
             jTxtLogradouro.setText(logradouro);
             jTxtBairro.setText(bairro);
             jTxtCidade.setText(cidade);

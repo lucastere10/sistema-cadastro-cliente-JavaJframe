@@ -38,7 +38,7 @@ public class Conexao {
 		try {
 			Class.forName(getDriverjdbc());
 			setC(DriverManager.getConnection(getStr_conexao(), getUser(), getSenha()));
-			 setStatment(getC().createStatement());
+			setStatment(getC().createStatement());
 			setStatment(getC().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE));
 			System.out.println("Conexão realizada com sucesso!");
 		} catch (Exception e) {

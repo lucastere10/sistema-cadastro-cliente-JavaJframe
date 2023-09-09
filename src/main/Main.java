@@ -12,7 +12,7 @@ public class Main {
 	public static final String SCHEMA = "sistema";
 	public static final String LOCAL = "localhost";
 	public static final String USUARIO = "postgres";
-	public static final String SENHA = "<teste123>";
+	public static final String SENHA = "123456";
 	public static final String PORTA = "5432";
 	public static final String BD = "PostgreSql";
 
