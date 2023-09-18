@@ -1,11 +1,14 @@
-package panels;
+package com.project.panels;
 
 import java.awt.EventQueue;
+import java.sql.Statement;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
@@ -17,12 +20,16 @@ import javax.swing.JProgressBar;
 import javax.swing.JToggleButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.io.PrintStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
+	private String schema;
 
 	/**
 	 * Launch the application.
@@ -69,11 +76,11 @@ public class TelaLogin extends JFrame {
 		lblNewLabel.setBounds(97, 97, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		JFormattedTextField frmtdtxtfldLogin = new JFormattedTextField();
-		frmtdtxtfldLogin.setToolTipText("Matrícula do Usuário");
-		frmtdtxtfldLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		frmtdtxtfldLogin.setBounds(97, 115, 156, 33);
-		contentPane.add(frmtdtxtfldLogin);
+		JFormattedTextField textFieldLogin = new JFormattedTextField();
+		textFieldLogin.setToolTipText("Matrícula do Usuário");
+		textFieldLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textFieldLogin.setBounds(97, 115, 156, 33);
+		contentPane.add(textFieldLogin);
 		
 		JLabel lblNewLabel_1 = new JLabel("Senha");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -88,7 +95,31 @@ public class TelaLogin extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("passwordField");
+				
+				String username = textFieldLogin.getText();
+				//char[] password = JPasswordField.getPassword();
+				System.out.println(username);
+				System.out.println();
+				dispose();
+				JOptionPane.showMessageDialog(null, "Incorrect Password");
+				//TelaClienteCRUD cadastro = new TelaClienteCRUD();
+				/*Statement stm = conexao.getStatment();
+				String sql = "select * from " + schema + ".funcionario where username = "+username;
+				try {
+					ResultSet rs = stm.executeQuery(sql);
+					if(rs.next()) {
+						dispose();
+						TelaClienteCRUD cadastro = new TelaClienteCRUD();
+						cadastro.show();;
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "Incorrect Password");
+					}
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}*/
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));

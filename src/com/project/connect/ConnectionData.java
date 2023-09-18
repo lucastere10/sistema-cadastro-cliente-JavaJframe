@@ -1,13 +1,13 @@
-package database;
+package com.project.connect;
 
-public class DadosConexao {
+public class ConnectionData {
 	private String local;
 	private String user;
 	private String senha;
 	private String porta;
-	private String bd;   	// PostgreSql
-	private String banco; 	// Database
-	
+	private String bd;   // PostgreSql
+	private String database; // Database
+
 	public String getLocal() {
 		return local;
 	}
@@ -38,13 +38,10 @@ public class DadosConexao {
 	public void setBd(String bd) {
 		this.bd = bd;
 	}
-	public String getBanco() {
-		return banco;
+	public String getDatabase() {
+		return database;
 	}
-	public void setBanco(String banco) {
-		this.banco = banco;
+	public void setDatabase(String banco) {
+		this.database = banco;
 	}
-	
-	
-	
 }

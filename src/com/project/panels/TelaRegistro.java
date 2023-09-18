@@ -1,11 +1,9 @@
-package panels;
+package com.project.panels;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import models.Cliente;
 
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
@@ -19,6 +17,7 @@ import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.Box;
 import javax.swing.text.MaskFormatter;
+
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.awt.Component;
 import javax.swing.JInternalFrame;
