@@ -6,6 +6,7 @@ import com.project.connect.ClassConnection;
 import com.project.connect.ConnectionData;
 import com.project.connect.ConnectionFile;
 import com.project.dao.CreateDAO;
+import com.project.frames.LoginFrame;
 import com.project.models.Setup;
 
 
@@ -15,7 +16,7 @@ public class Main {
 	public static ClassConnection con;
 	public static ConnectionData dadosCon = new ConnectionData();
 	public static final String BANCO = "dbcrud";
-	public static final String SCHEMA = "sistema";
+	public static final String SCHEMA = "crud";
 	public static final String PATH = System.getProperty("user.dir");
 	public static final String SFILE = "DadosConexao.ini";
 	public static void main(String[] args) {
@@ -27,9 +28,11 @@ public class Main {
 					con = new ClassConnection(dadosCon);
 					con.conect();
 					sys = new Setup(con, SCHEMA);
-					//OpcaoCRUD.setVisible(true);
+					LoginFrame lframe = new LoginFrame(con,SCHEMA);
+					lframe.setVisible(true); 
 					System.out.println(System.getProperty("user.dir"));
 					System.out.println("Banco de Dados conectado com sucesso!");
+
 				}
 			} else {
 				System.out.println("Ocorreu um problema na criacao do banco de dados");

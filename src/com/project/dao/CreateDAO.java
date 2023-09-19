@@ -26,7 +26,13 @@ import com.project.connect.ConnectionData;
  			conexao = makeConnection(bd, dadosCon);
  			
  			if (createSchema(conexao, schema)) {
-				
+				createEntityCategory(conexao, schema);
+				createEntityRole(conexao, schema);
+				createEntityClient(conexao, schema);
+				createEntityUser(conexao, schema);
+				createEntityOrder(conexao, schema);
+				createEntityProduct(conexao, schema);
+				createEntityCartProduct(conexao, schema);
  				bdCriado = true;
  			}
  		}
@@ -141,23 +147,130 @@ import com.project.connect.ConnectionData;
  	}	
 
  	//CRIAR ENTIDADES --------------------------------------------------------------
- 	private static void criarEntidadeCliente(ClassConnection con, String schema) {
- 		String entity = "cliente";
+ 	private static void createEntityClient(ClassConnection con, String schema) {
+ 		String entity = "client";
  		
  		if (!entityExists(con, schema, entity))		
  			criarTabela(con, entity, schema);
  		
  		if (entityExists(con, schema, entity)) {
- 			criarCampo(con, schema, entity, "idcliente", "serial"	 	 	, true,  false, null, null);
- 			criarCampo(con, schema, entity, "nome"	 , "varchar(100)"	, false, false, null, null);
- 			criarCampo(con, schema, entity, "cpf"		 , "varchar(11)" 	, false, false, null, null);
- 			criarCampo(con, schema, entity, "email"	 , "varchar(150)"	, false, false, null, null);
- 			criarCampo(con, schema, entity, "telefone" , "varchar(16)"	, false, false, null, null);
- 			criarCampo(con, schema, entity, "dt_nascimento"	, "date"	, false, false, null, null);
- 			criarCampo(con, schema, entity, "endereco"	 	, "text"	, false, false, null, null);
- 			cadastrarClientes(con, schema, entity);
+ 			criarCampo(con, schema, entity, "idclient"	, "serial"	 	 	, true,  false, null, null);
+ 			criarCampo(con, schema, entity, "codeclient", 
+ 						"TEXT GENERATED ALWAYS AS ( 'CLI' || LPAD(idclient::TEXT, 3, '0') ) STORED"
+ 						, false,  false, null, null);
+ 			criarCampo(con, schema, entity, "name"	 	, "varchar(100)"	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "cpf"		, "varchar(11)" 	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "email"	 	, "varchar(150)"	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "phone" 	, "varchar(16)"		, false, false, null, null);
+ 			criarCampo(con, schema, entity, "birthdate"	, "date"			, false, false, null, null);
+ 			criarCampo(con, schema, entity, "adress"	, "text"			, false, false, null, null);
+ 			//cadastrarClientes(con, schema, entity);
  		}		
  	}
+ 	
+ 	private static void createEntityUser(ClassConnection con, String schema) {
+ 		String entity = "user";
+ 		
+ 		if (!entityExists(con, schema, entity))		
+ 			criarTabela(con, entity, schema);
+ 		
+ 		if (entityExists(con, schema, entity)) {
+ 			criarCampo(con, schema, entity, "iduser"	, "serial"	 	 	, true,  false, null, null);
+ 			criarCampo(con, schema, entity, "codeuser", 
+ 						"TEXT GENERATED ALWAYS AS ( 'USER' || LPAD(iduser::TEXT, 3, '0') ) STORED"
+ 						, false,  false, null, null);
+ 			criarCampo(con, schema, entity, "name"	 	, "varchar(100)"	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "cpf"		, "varchar(11)" 	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "email"	 	, "varchar(150)"	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "phone" 	, "varchar(16)"		, false, false, null, null);
+ 			criarCampo(con, schema, entity, "birthdate"	, "date"			, false, false, null, null);
+ 			criarCampo(con, schema, entity, "adress"	, "text"			, false, false, null, null);
+ 			criarCampo(con, schema, entity, "idrole"	, "int"				, false, true, "role", "idrole");
+ 			
+ 			//cadastrarClientes(con, schema, entity);
+ 		}		
+ 	}
+ 	
+ 	private static void createEntityRole(ClassConnection con, String schema) {
+ 		String entity = "role";
+ 		
+ 		if (!entityExists(con, schema, entity))		
+ 			criarTabela(con, entity, schema);
+ 		
+ 		if (entityExists(con, schema, entity)) {
+ 			criarCampo(con, schema, entity, "idrole", "serial"	 	 		, true,  false, null, null);
+ 			criarCampo(con, schema, entity, "name"	 , "varchar(100)"		, false, false, null, null);
+ 			criarCampo(con, schema, entity, "description", "varchar(255)" 	, false, false, null, null);
+ 		}		
+ 	}
+ 	
+ 	private static void createEntityOrder(ClassConnection con, String schema) {
+ 		String entity = "order";
+ 		
+ 		if (!entityExists(con, schema, entity))		
+ 			criarTabela(con, entity, schema);
+ 		
+ 		if (entityExists(con, schema, entity)) {
+ 			criarCampo(con, schema, entity, "idorder", "serial"	 	 		, true,  false, null, null);
+ 			criarCampo(con, schema, entity, "codeorder", 
+ 						"TEXT GENERATED ALWAYS AS ( 'ORDER' || LPAD(idorder::TEXT, 3, '0') ) STORED"
+ 						, false,  false, null, null);
+ 			criarCampo(con, schema, entity, "date_issue"	, "timestamp"	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "idclient"	 	, "int"			, false, true, "client", "idclient");
+ 			
+ 			//cadastrarClientes(con, schema, entity);
+ 		}		
+ 	}
+ 	
+ 	private static void createEntityProduct(ClassConnection con, String schema) {
+ 		String entity = "product";
+ 		
+ 		if (!entityExists(con, schema, entity))		
+ 			criarTabela(con, entity, schema);
+ 		
+ 		if (entityExists(con, schema, entity)) {
+ 			criarCampo(con, schema, entity, "idproduct", "serial"	 	 		, true,  false, null, null);
+ 			criarCampo(con, schema, entity, "codeproduct", 
+ 						"TEXT GENERATED ALWAYS AS ( 'PROD' || LPAD(idproduct::TEXT, 3, '0') ) STORED"
+ 						, false,  false, null, null);
+ 			criarCampo(con, schema, entity, "name"	 , "varchar(100)"			, false, false, null, null);
+ 			criarCampo(con, schema, entity, "desc_prod"		 , "text" 				, false, false, null, null);
+ 			criarCampo(con, schema, entity, "vl_cost"	 , "double precision"	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "vl_price"	 , "double precision"	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "stock" , "int"						, false, false, null, null);
+ 			criarCampo(con, schema, entity, "idcategory"	, "int"				, false, true, "category", "idcategory");
+ 			
+ 			//cadastrarClientes(con, schema, entity);
+ 		}		
+ 	}
+ 	
+ 	private static void createEntityCategory(ClassConnection con, String schema) {
+ 		String entity = "category";
+ 		
+ 		if (!entityExists(con, schema, entity))		
+ 			criarTabela(con, entity, schema);
+ 		
+ 		if (entityExists(con, schema, entity)) {
+ 			criarCampo(con, schema, entity, "idcategory"	, "serial"	 	 	, true,  false, null, null);
+ 			criarCampo(con, schema, entity, "name"	 		, "varchar(100)"	, false, false, null, null);
+ 			criarCampo(con, schema, entity, "desc_cat"	, "varchar(255)" 	, false, false, null, null);
+ 		}		
+ 	}
+ 	
+ 	private static void createEntityCartProduct(ClassConnection con, String schema) {
+ 		String entity = "order_product";
+ 		
+ 		if (!entityExists(con, schema, entity))		
+ 			criarTabela(con, entity, schema);
+ 		
+ 		if (entityExists(con, schema, entity)) {
+ 			criarCampo(con, schema, entity, "idorder"		, "serial"	, false,  true, "order", "idorder");
+ 			criarCampo(con, schema, entity, "idproduct"		, "serial"	, false,  true, "product", "idproduct");
+ 			criarCampo(con, schema, entity, "quantity"	 	, "int"		, false, false, null, null);
+ 		}		
+ 	}
+ 	
+ 	
  	
  	//---------------------------------------------------------------------------------------
  	public static boolean databaseExists(ClassConnection con, String bd) {

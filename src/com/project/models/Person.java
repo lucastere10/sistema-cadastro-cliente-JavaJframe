@@ -1,6 +1,6 @@
 package com.project.models;
 
-public class People {
+public class Person {
 	String name;
 	String cpf;
 	String adress;
