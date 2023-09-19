@@ -24,6 +24,8 @@ hs_err_pid*
 replay_pid*
 /bin/
 
-
 #dadosConexao
 DadosConexao.ini
+
+#not ignore
+!*/libs/postgresql-42.6.0.jar
