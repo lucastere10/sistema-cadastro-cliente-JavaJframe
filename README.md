@@ -7,7 +7,6 @@ Projeto realizado para o Serratec usando Java e JFrame
 * Produto
 * Pedido
 
-#### Deve seguir o modelo lógico anexado.
 #### Deve permitir cadastrar, alterar e excluir (CRUD): clientes, produtos e pedidos.
 
 ## Cada tabela:
@@ -30,18 +29,3 @@ Projeto realizado para o Serratec usando Java e JFrame
 * Deve permitir selecionar um produto (por código e/ou nome) e mostrar todos os pedidos que possui.
 * Deve permitir selecionar um pedido (por código e/ou data) e mostrar o seu cliente e todos os produtos que possui.
 * Deve possuir os dados da empresa que vende o produto para o cliente.
-
-
-- Deve ser entregue o SQL de criação das tabelas e o projeto Java completo.
-- Deve ser entregue o Diagrama de Classes (UML)
-
-<hr>
-
-#### Avaliação: O trabalho vale 90 pontos. Sendo 60 da criação das classes e UML e 30 da construção do main.
-
-#### Descontarei pontos se:
-- Não for entregue o SQL de criação das tabelas (2 pontos)
-- Não for entregue o Diagrama de Classes (2 pontos)
-- O projeto possuir um erro de execução (1 ponto por erro)
-- Não houver encapsulamento (2 pontos)
-- Não atender aos requisitos (1 ponto cada falta)
